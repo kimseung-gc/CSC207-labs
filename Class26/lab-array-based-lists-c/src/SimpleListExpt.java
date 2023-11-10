@@ -49,4 +49,8 @@ public class SimpleListExpt {
     expt(pen, lst, new String[] {"alpha", "bravo", "charlie"});
     expt(pen, lst, new String[] {"aardvark", "anteater", "antelope"});
   } // expt(PrintWriter, SimpleList<String>)
+
+  static void expt2(PrintWriter pen, SimpleList<Integer> lst){
+    expt(pen, lst, new Integer[] {0,1,2,3,4});
+  }
 } // class SimpleListExpt
