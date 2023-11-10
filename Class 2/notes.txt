@@ -1,0 +1,22 @@
+ADT philosophy
+ - create and implement data structures
+ - Abstract Data Type: type for objects whose behavior is defined by a set of values and a set of operations
+
+ADT uses
+ - check web browser history
+ - back tracking
+
+ADT methods
+ - stacks
+ - linked lists
+ - doubly lists
+ - queues
+
+Fixed Size Arrays
+    Philosophy
+         - An array with non-expandable size
+    Uses
+         - Similar to dynamic arrays, but with more limitations
+    Methods
+         - Create the array
+         - 

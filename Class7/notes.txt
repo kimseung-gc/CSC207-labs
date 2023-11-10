@@ -1,0 +1,10 @@
+PUM (Philosophy, Uses, Methods)
+
+LIA (Layout, Implementation, Architecture)
+
+get(int i){
+    return values[i];
+}
+set(int i, String var){
+    values[i] = var;
+}
