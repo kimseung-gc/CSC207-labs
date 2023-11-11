@@ -63,7 +63,7 @@ public class SimpleBST<K,V> implements SimpleMap<K,V> {
 
   @Override
   public V set(K key, V value) {
-    return set(new BSTNode<K,V>(key, value), this.root);
+    return set(key, new BSTNode<K,V>(key, value), this.root);
   } // set(K,V)
 
   @Override
@@ -90,7 +90,7 @@ public class SimpleBST<K,V> implements SimpleMap<K,V> {
       return null;
     } // if
     size--;
-    return set(key, null);
+    return set(key, null, this.root);
   } // remove(K)
 
   @Override
@@ -228,31 +228,31 @@ public class SimpleBST<K,V> implements SimpleMap<K,V> {
   /**
    * Helper method for set
    */
-  V set(BSTNode<K, V> node, BSTNode<K, V> root){
+  V set(K key, BSTNode<K, V> replacingNode, BSTNode<K, V> root){
     if(root == null){
-      this.root = node;
+      this.root = replacingNode;
       size++;
       return null;
     } // if
     V ret = root.value;
-    int comparison = this.comparator.compare(root.key, node.key);
+    int comparison = this.comparator.compare(root.key, key);
     if(comparison == 0){
-      root.value = node.value;
+      root = replacingNode;
       return ret;
     }else if(comparison < 0){
       if(root.left == null){
         size++;
-        root.left = node;
+        root.left = replacingNode;
         return null;
       } // if
-      return set(node, root.left);
+      return set(key, replacingNode, root.left);
     } // if/else
     if(root.right == null){
       size++;
-      root.left = node;
+      root.left = replacingNode;
       return null;
     } // if
-    return set(node, root.right);
+    return set(key, replacingNode, root.right);
   } // set()
 
   /**
