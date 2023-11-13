@@ -89,8 +89,19 @@ public class SimpleBST<K,V> implements SimpleMap<K,V> {
     if(!this.containsKey(key)){
       return null;
     } // if
+    BSTNode<K,V> temp = getNode(key, this.root);
+    if(temp == null){
+      return null;
+    } // if
+    BSTNode<K, V> rightMostOfLeft = getRightMost(temp.left);
     size--;
-    return set(key, null, this.root);
+    if(rightMostOfLeft == null){
+      if(temp.right == null){
+        return setNode(temp, null);
+      }
+      return setNode(temp, temp.right);
+    } // if
+    return setNode(temp, rightMostOfLeft);
   } // remove(K)
 
   @Override
@@ -181,13 +192,13 @@ public class SimpleBST<K,V> implements SimpleMap<K,V> {
     if (node == null) {
       throw new IndexOutOfBoundsException("Invalid key: " + key);
     } // if
-    int comp = comparator.compare(key, node.key);
+    int comp = comparator.compare(node.key, key);
     if (comp == 0) {
       return node.value;
     } else if (comp < 0) {
-      return get(key, node.left);
-    } else {
       return get(key, node.right);
+    } else {
+      return get(key, node.left);
     } // if/else
   } // get(K, BSTNode<K,V>)
 
@@ -228,31 +239,31 @@ public class SimpleBST<K,V> implements SimpleMap<K,V> {
   /**
    * Helper method for set
    */
-  V set(K key, BSTNode<K, V> replacingNode, BSTNode<K, V> root){
-    if(root == null){
+  V set(K key, BSTNode<K, V> replacingNode, BSTNode<K, V> current){
+    if(this.root == null){
       this.root = replacingNode;
       size++;
       return null;
     } // if
-    V ret = root.value;
-    int comparison = this.comparator.compare(root.key, key);
+    V ret = current.value;
+    int comparison = this.comparator.compare(key, current.key);
     if(comparison == 0){
-      root = replacingNode;
+      current = replacingNode;
       return ret;
     }else if(comparison < 0){
-      if(root.left == null){
+      if(current.left == null){
         size++;
-        root.left = replacingNode;
+        current.left = replacingNode;
         return null;
       } // if
-      return set(key, replacingNode, root.left);
+      return set(key, replacingNode, current.left);
     } // if/else
-    if(root.right == null){
+    if(current.right == null){
       size++;
-      root.left = replacingNode;
+      current.right = replacingNode;
       return null;
     } // if
-    return set(key, replacingNode, root.right);
+    return set(key, replacingNode, current.right);
   } // set()
 
   /**
@@ -270,7 +281,7 @@ public class SimpleBST<K,V> implements SimpleMap<K,V> {
   } // forEach(BiConsumer<? super K, ? super V>, BSTNode<K, V>)
 
   /**
-   * 
+   * Searches through the tree whether the key is inside.
    * @param key
    * @param node
    * @return
@@ -279,7 +290,7 @@ public class SimpleBST<K,V> implements SimpleMap<K,V> {
     if(node == null){
       return false;
     } // if
-    int comparison = this.comparator.compare(root.key, node.key);
+    int comparison = this.comparator.compare(key, node.key);
     if(comparison == 0){
       return true;
     } else if(comparison < 0){
@@ -287,4 +298,45 @@ public class SimpleBST<K,V> implements SimpleMap<K,V> {
     }// if/else
     return containsKey(key, node.right);
   } // containsKey(K, BSTNode<K, V>)
+
+  /**
+   * Gets the node with the key <key>.
+   * @param key
+   * @param node
+   * @return
+   */
+  BSTNode<K, V> getNode(K key, BSTNode<K, V> node){
+    if(node == null){
+      return null;
+    } // if/else
+    int comp = comparator.compare(node.key, key);
+    if(comp == 0){
+      return node;
+    }else if(comp < 0){
+      return getNode(key, node.right);
+    } // if/else
+    return getNode(key, node.left);
+  } // getNode (K, BSTNode<K, V>)
+
+  /**
+   * Gets the right most node of the headNode
+   * @param headNode
+   * @return
+   */
+  BSTNode<K, V> getRightMost(BSTNode<K, V> headNode){
+    if(headNode == null){
+      return null;
+    } else if(headNode.right == null){
+      return headNode;
+    } // if/else
+    return getRightMost(headNode.right);
+  } // getRightMost(BSTNode<K, V>)
+
+  V setNode(BSTNode<K, V> originalNode, BSTNode<K, V> newNode){
+    originalNode = newNode;
+    if(newNode == null){
+      return null;
+    } // if
+    return originalNode.value;
+  } // setNode(BSTNode<K, V>, BSTNode<K, V>)
 } // class SimpleBST
