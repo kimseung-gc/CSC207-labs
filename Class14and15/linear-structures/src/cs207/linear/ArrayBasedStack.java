@@ -1,5 +1,3 @@
-package cs207.linear;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

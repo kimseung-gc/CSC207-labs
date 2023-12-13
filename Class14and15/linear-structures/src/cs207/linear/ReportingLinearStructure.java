@@ -1,5 +1,3 @@
-package cs207.linear;
-
 import java.io.PrintWriter;
 import java.util.Iterator;
 

@@ -1,8 +1,5 @@
-package cs207.linear;
-
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
  * Priority queues implemented with the standard Java Priority Queues. 

@@ -1,5 +1,3 @@
-package cs207.linear;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -131,6 +129,14 @@ class ArrayBasedQueueIterator<T> implements Iterator<T> {
   // | Fields |
   // +--------+
 
+  /**
+   * 
+   * @param q
+   */
+  T[] queue;
+  int len;
+  int i;
+
   // +--------------+----------------------------------------------------
   // | Constructors |
   // +--------------+
@@ -139,7 +145,9 @@ class ArrayBasedQueueIterator<T> implements Iterator<T> {
    * Create a new iterator.
    */
   public ArrayBasedQueueIterator(ArrayBasedQueue<T> q) {
-    // STUB
+    this.i = 0;
+    this.len = q.size;
+    this.queue = q.values;
   } // ArrayBasedQueueIterator
 
   // +---------+---------------------------------------------------------
@@ -151,14 +159,12 @@ class ArrayBasedQueueIterator<T> implements Iterator<T> {
     if (!this.hasNext()) {
       throw new NoSuchElementException("no elements remain");
     } // if no elements
-    // STUB
-    throw new NoSuchElementException("unimplemented");
+    return this.queue[this.i++];
   } // next()
 
   @Override
   public boolean hasNext() {
-    // STUB
-    return false;
+    return (this.i<this.len);
   } // hasNext()
 
   @Override

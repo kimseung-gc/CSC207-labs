@@ -1,5 +1,3 @@
-package cs207.linear;
-
 /**
  * Simple nodes for linked structures.  Nodes are not encapsulated;
  * we assume that the client classes (in the same package) will

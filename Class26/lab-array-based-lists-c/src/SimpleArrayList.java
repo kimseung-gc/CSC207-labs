@@ -133,7 +133,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
       public T next() {
          if (!this.hasNext()) {
           throw new NoSuchElementException();
-         } //
+         } // if
         return SimpleArrayList.this.values[this.pos++];
       } // next()
 
@@ -148,19 +148,27 @@ public class SimpleArrayList<T> implements SimpleList<T> {
       public T previous() throws NoSuchElementException {
         if (!this.hasPrevious())
           throw new NoSuchElementException();
-        // STUB
-        return null;
+        this.pos = this.previousIndex();
+        return SimpleArrayList.this.values[this.pos];
       } // previous()
 
       public void remove() {
-        // Do the real work.
-        // STUB
-        throw new UnsupportedOperationException();
+        int temp = this.pos;
+        SimpleArrayList.this.values[temp] = null;
+        while (this.hasNext()) {
+          SimpleArrayList.this.values[this.pos] = SimpleArrayList.this.values[++this.pos];
+        } // while
+        SimpleArrayList.this.values[this.pos+1] = null;
+        SimpleArrayList.this.size--;
+        this.pos = temp;
       } // remove()
 
       public void set(T val) {
-        // STUB
-        throw new UnsupportedOperationException();
+        if (this.pos > SimpleArrayList.this.size-1) {
+          this.add(val);
+          return;
+        } // if
+        SimpleArrayList.this.values[this.pos] = val;
       } // set(T)
     };
   } // listIterator()

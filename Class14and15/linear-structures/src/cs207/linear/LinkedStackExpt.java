@@ -1,5 +1,3 @@
-package cs207.linear;
-
 /**
  * A really simple experiment with LinkedStack objects.
  *

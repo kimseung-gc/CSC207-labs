@@ -1,5 +1,3 @@
-package cs207.linear;
-
 import java.util.Comparator;
 
 /**
@@ -46,7 +44,7 @@ public class PriorityQueueExpt {
     PriorityQueue<String> pq;
     // Uncomment one of the following to choose the kind of
     // priority queue.
-    pq = new BuiltinPriorityQueue<String>(8, compareLengths);
+    pq = new LinkedPriorityQueue<String>(compareLengths);
     // pq = new ArrayBasedPriorityQueue<String>(8, compareLengths);
 
     ReportingLinearStructure<String> expt = new ReportingLinearStructure<String>(pq, "expt.");
