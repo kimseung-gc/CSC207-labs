@@ -7,7 +7,7 @@ import java.util.Iterator;
  * most of the methods.)
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Hyeon Kim
  */
 public class BuiltinPriorityQueue<T> implements PriorityQueue<T> {
   // +--------+----------------------------------------------------------

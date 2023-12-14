@@ -2,6 +2,10 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Linked structure representation of priority queue
+ * @author Hyeon Kim
+ */
 public class LinkedPriorityQueue<T> implements PriorityQueue<T> {
   /**
    * front node of the priority queue

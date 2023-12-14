@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
  * Queues implemented with arrays.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Hyeon Kim
  */
 public class ArrayBasedQueue<T> implements Queue<T> {
   // +--------+----------------------------------------------------------

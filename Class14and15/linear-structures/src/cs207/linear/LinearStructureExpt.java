@@ -4,7 +4,7 @@ import java.io.PrintWriter;
  * Experiments with LinearStructures.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Hyeon Kim
  */
 public class LinearStructureExpt {
   // +----------------+--------------------------------------------------

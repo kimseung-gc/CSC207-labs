@@ -2,10 +2,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A simple array-based stack.
+ * A simple linked queue.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Hyeon Kim
  */
 public class LinkedQueue<T> implements Queue<T> {
   // +--------+----------------------------------------------------------
